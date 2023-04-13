@@ -1,0 +1,19 @@
+version: '3'
+services:
+  back:
+    container_name: svelte-template-backend
+    build: backend/
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./backend/pb_migrations/:/pb_migrations
+      - ./backend/pb_data/:/pb_data/
+  front:
+    container_name: svelte-template-frontend
+    build: frontend/
+    volumes:
+      - ./frontend/src/:/app/src
+    ports:
+      - "5173:5173"
+    env_file:
+      - .env
